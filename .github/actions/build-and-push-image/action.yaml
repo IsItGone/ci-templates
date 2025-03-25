@@ -6,6 +6,7 @@ inputs:
     required: false
     default: "./Dockerfile"
   tag:
+    description: "Image tag: commit hash or version"
     required: true
   image-name:
     description: "Image name: owner/image"
