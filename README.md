@@ -1,30 +1,51 @@
 # CI Templates
 
-Reusable GitHub Actions workflows for CI/CD pipelines across multiple repositories.
+This repository provides reusable GitHub Actions composite actions for CI/CD pipelines across multiple repositories.
 
 ## 📦 Features
 
-- Standardized workflows for build, test, Docker image publishing, and Helm chart deployment
-- Environment-based deployment logic (e.g., dev for `main`, prod for `release*`)
-- Reusable via `workflow_call`
+- Standardized composite actions for build, test, Docker image build, and push
+- Supports Gradle-based JAR build and Docker Buildx for building and pushing images
 
 ## 🚀 Usage
 
-To reuse a workflow from this repository in another repo:
+To use a composite action from this repository in another repository, reference it in your workflow file as shown below.
+
+### Example: Gradle JAR Build
 
 ```yaml
 jobs:
-  docker:
-    uses: IsItGone/ci-templates/.github/workflows/docker-build-push.yml@main
-    with:
-      version-tag: 1.0.0
-      hash-tag: 3DFA14B      
+  build-jar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build JAR with Gradle
+        uses: IsItGone/ci-templates/.github/actions/build-jar/action.yaml
 ```
 
-## 📁 Available Workflows
+### Example: Docker Image Build and Push
+```yaml
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and Push Docker Image
+        uses: IsItGone/ci-templates/.github/actions/build-and-push-image/action.yaml
+        with:
+          tag: 1.0.0
+          image-name: owner/image
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          # Optional inputs:
+          # dockerfile: "./Dockerfile"
+          # registry: "ghcr.io"
+          # username: "ddd-cute-bot"
+```
 
-| Workflow                                | Description                                         |
-|-----------------------------------------|-----------------------------------------------------|
-| `.github/workflows/docker-build-push.yml` | Docker build & push using GitHub Container Registry |
-| `.github/workflows/java-gradle-build.yml` | Java + Gradle build                                 |
-| `.github/workflows/helm-deploy.yml`       | Helm chart repository update & deployment           |
+📁 Available Composite Actions (English)
+
+| Action Path                                      | Description                                        |
+| ------------------------------------------------ | -------------------------------------------------- |
+| .github/actions/build-jar/action.yaml            | Gradle-based JAR build                             |
+| .github/actions/build-and-push-image/action.yaml | Docker Buildx for building and pushing images      |
+
