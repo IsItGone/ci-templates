@@ -1,8 +1,4 @@
-name: 'Build with Gradle'
-# inputs:
-#   jdk-version:
-#     required: false
-#     default: '17'
+name: 'Build jar with Gradle'
 runs:
   using: "composite"
   steps:
