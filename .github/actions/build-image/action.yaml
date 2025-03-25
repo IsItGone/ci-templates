@@ -5,7 +5,7 @@ inputs:
     required: true
   image-name:
     description: "Image name in the format: org/image or owner/image."
-    required: true
+    required: false
     
   dockerfile:
     description: "Path to the Dockerfile"
