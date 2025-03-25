@@ -4,6 +4,7 @@ inputs:
   tag:
     required: true
   image-name:
+    description: "Image name in the format: org/image or owner/image."
     required: true
     
   dockerfile:
@@ -31,4 +32,4 @@ runs:
       file: ${{ inputs.dockerfile }}
       platforms: linux/amd64,linux/arm64
       push: true
-      tags: ghcr.io/${{ github.organization }}/${{ inputs.image-name }}:${{ inputs.tag }}
+      tags: ghcr.io/${{ inputs.image-name }}:${{ inputs.tag }}
