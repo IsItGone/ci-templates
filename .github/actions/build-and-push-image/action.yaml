@@ -10,7 +10,7 @@ inputs:
     required: true
   image-name:
     description: "Image name: owner/image"
-    required: false
+    required: true
   registry:
     description: "Docker registry"
     required: false
