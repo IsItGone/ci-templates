@@ -42,7 +42,7 @@ jobs:
           # username: "ddd-cute-bot"
 ```
 
-📁 Available Composite Actions (English)
+📁 Available Composite Actions
 
 | Action Path                                      | Description                                        |
 | ------------------------------------------------ | -------------------------------------------------- |
