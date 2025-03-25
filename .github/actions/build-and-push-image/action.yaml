@@ -22,6 +22,8 @@ inputs:
   password:
     description: "Docker password"
     required: true
+  visibility:
+    description: "Container "
 runs:
   using: "composite"
   steps:
@@ -42,4 +44,4 @@ runs:
       file: ${{ inputs.dockerfile }}
       platforms: linux/amd64,linux/arm64
       push: true
-      tags: ghcr.io/${{ inputs.image-name }}:${{ inputs.tag }}
+      tags: ${{ inputs.registry }}/${{ inputs.image-name }}:${{ inputs.tag }}
