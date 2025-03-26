@@ -44,31 +44,14 @@ with:
 ### build-and-push-image Action
 This action builds and pushes a Docker image using Docker Buildx. The inputs are defined as follows:
 
-- **dockerfile**  
-  - Description: Path to the Dockerfile  
-  - Required: false  
-  - Default: "./Dockerfile"
+| Input       | Description                                  | Required | Default         |
+|-------------|----------------------------------------------|----------|-----------------|
+| dockerfile  | Path to the Dockerfile                       | ❌       | "./Dockerfile"  |
+| tag         | Image tag (commit hash or version)           | ✔️       | -               |
+| image-name  | Image name (format: owner/image)             | ✔️       | -               |
+| registry    | Docker registry                              | ❌       | "ghcr.io"       |
+| username    | Docker username                              | ❌       | "ddd-cute-bot"  |
+| password    | Docker password                              | ✔️       | -               |
 
-- **tag**  
-  - Description: Image tag (commit hash or version)  
-  - Required: true
-
-- **image-name**  
-  - Description: Image name (format: owner/image)  
-  - Required: true
-
-- **registry**  
-  - Description: Docker registry  
-  - Required: false  
-  - Default: "ghcr.io"
-
-- **username**  
-  - Description: Docker username  
-  - Required: false  
-  - Default: "ddd-cute-bot"
-
-- **password**  
-  - Description: Docker password  
-  - Required: true
 
 Make sure to provide values for all required inputs (tag, image-name, and password) when using the composite action. Optional inputs can be omitted if the defaults are acceptable.
