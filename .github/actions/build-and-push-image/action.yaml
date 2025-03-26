@@ -22,8 +22,7 @@ inputs:
   password:
     description: "Docker password"
     required: true
-  visibility:
-    description: "Container "
+
 runs:
   using: "composite"
   steps:
