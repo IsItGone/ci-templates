@@ -13,12 +13,12 @@
 최신 액션을 사용하려면 항상 main ref(@main)를 참조하시기 바랍니다.
 
 예를 들어, Gradle JAR 빌드를 수행하려면 다음 예시와 같이 참조합니다:
-```
+```yaml
 uses: IsItGone/ci-templates@main/.github/actions/build-jar@main
 ```
 
 Docker 이미지 빌드 및 푸시를 수행하려면 다음 예시와 같이 참조합니다:  
-```
+```yaml
 uses: IsItGone/ci-templates@main/.github/actions/build-and-push-image@main
 with:  
   tag: 1.0.0  
@@ -41,31 +41,13 @@ with:
 ### build-and-push-image 액션
 이 액션은 Docker Buildx를 사용하여 Docker 이미지를 빌드하고 푸시합니다. 입력값은 아래와 같이 정의되어 있습니다.
 
-- **dockerfile**  
-  - 설명: Dockerfile의 경로  
-  - 필수: 아니오  
-  - 기본값: "./Dockerfile"
-
-- **tag**  
-  - 설명: 이미지 태그 (커밋 해시 또는 버전)  
-  - 필수: 예
-
-- **image-name**  
-  - 설명: 이미지 이름 (형식: owner/image)  
-  - 필수: 예
-
-- **registry**  
-  - 설명: Docker registry  
-  - 필수: 아니오  
-  - 기본값: "ghcr.io"
-
-- **username**  
-  - 설명: Docker username  
-  - 필수: 아니오  
-  - 기본값: "ddd-cute-bot"
-
-- **password**  
-  - 설명: Docker password  
-  - 필수: 예
+| 입력값      | 설명                              | 필수 여부 | 기본값          |
+|-------------|-----------------------------------|-----------|-----------------|
+| dockerfile  | Dockerfile의 경로                 | ❌        | "./Dockerfile"  |
+| tag         | 이미지 태그 (커밋 해시 또는 버전)   | ✔️        | -               |
+| image-name  | 이미지 이름 (형식: owner/image)     | ✔️        | -               |
+| registry    | Docker registry                   | ❌        | "ghcr.io"       |
+| username    | Docker username                   | ❌        | "ddd-cute-bot"  |
+| password    | Docker password                   | ✔️        | -               |
 
 이 composite action을 사용할 때는 필수 입력값(tag, image-name, password)을 반드시 제공해야 하며, 선택 입력값은 기본값으로도 사용 가능합니다.
