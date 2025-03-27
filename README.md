@@ -43,14 +43,15 @@ with:
 
 ### build-and-push-image Action
 
-This action builds and pushes Docker images using Docker Buildx. The inputs are defined as follows:
+This action builds and pushes a Docker image using Docker Buildx. The following inputs are defined:
 
-| Input       | Description                                     | Required | Default           |
-|-------------|-------------------------------------------------|----------|-------------------|
-| dockerfile  | Path to the Dockerfile                          | ❌       | "./Dockerfile"    |
-| tags        | List of image tags, separated by commas         | ✔️       | -                 |
-| registry    | Docker registry                                 | ❌       | "ghcr.io"         |
-| username    | Docker username                                 | ❌       | "ddd-cute-bot"    |
-| password    | Docker password (e.g., token)                   | ✔️       | -                 |
+| Input       | Description                                | Required | Default           |
+|-------------|--------------------------------------------|----------|-------------------|
+| dockerfile  | Path to the Dockerfile                     | ❌       | "./Dockerfile"    |
+| tags        | Comma-separated list of image tags         | ✔️       | -                 |
+| registry    | Docker registry                            | ✔️       | -                 |
+| username    | Docker username                            | ❌       | "ddd-cute-bot"    |
+| password    | Docker password (e.g., token)              | ✔️       | -                 |
 
-**Note:** `tags` and `password` are required inputs. Other inputs can be omitted and will fall back to their default values.
+> The `tags` input must be in full image reference format including the registry and image name.  
+> Example: `ghcr.io/owner/image:tag1,ghcr.io/owner/image:latest`
