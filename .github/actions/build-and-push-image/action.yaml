@@ -5,11 +5,8 @@ inputs:
     description: "Path to the Dockerfile"
     required: false
     default: "./Dockerfile"
-  tag:
-    description: "Image tag: commit hash or version"
-    required: true
-  image-name:
-    description: "Image name: owner/image"
+  tags:
+    description: "List of tags, seperated by comma"
     required: true
   registry:
     description: "Docker registry"
@@ -43,4 +40,4 @@ runs:
       file: ${{ inputs.dockerfile }}
       platforms: linux/amd64,linux/arm64
       push: true
-      tags: ${{ inputs.registry }}/${{ inputs.image-name }}:${{ inputs.tag }}
+      tags: ${{ inputs.tags }}
