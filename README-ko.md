@@ -37,17 +37,17 @@ with:
 ### build-jar 액션
 - 이 액션은 Gradle 기반 JAR 빌드를 수행합니다.
 - 위의 예시와 같이 참조하면 되며, 별도의 입력값은 없습니다.
-- 
+
 ### build-and-push-image 액션
 
 이 액션은 Docker Buildx를 사용하여 Docker 이미지를 빌드하고 푸시합니다. 입력값은 아래와 같이 정의되어 있습니다.
 
-| 입력값     | 설명                                      | 필수 여부 | 기본값             |
-|------------|-------------------------------------------|-----------|--------------------|
-| dockerfile | Dockerfile의 경로                         | ❌        | "./Dockerfile"     |
-| tags       | 쉼표로 구분된 이미지 태그 목록             | ✔️        | -                  |
-| registry   | Docker 레지스트리                         | ❌        | "ghcr.io"          |
-| username   | Docker 사용자 이름                         | ❌        | "ddd-cute-bot"     |
-| password   | Docker 비밀번호 (토큰 등)                  | ✔️        | -                  |
+| 입력값       | 설명                               | 필수 여부 | 기본값           |
+|------------|----------------------------------|--------|----------------|
+| dockerfile | Dockerfile의 경로                    | ❌     | "./Dockerfile" |
+| tags       | 쉼표로 구분된 이미지 태그 목록            | ✔️     | -              |
+| registry   | Docker 레지스트리                   | ✔️     | -              |
+| username   | Docker 사용자 이름                    | ❌     | "ddd-cute-bot" |
+| password   | Docker 비밀번호 (토큰 등)               | ✔️     | -              |
 
-**사용 시 주의사항:** `tags`와 `password`는 필수 입력값이며, 나머지 입력값은 기본값으로 대체될 수 있습니다.
+> `tags` 입력은 registry와 이미지 이름이 포함된 full reference 형식이어야 합니다. 예: `ghcr.io/owner/image:tag1,ghcr.io/owner/image:latest`
