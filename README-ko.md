@@ -37,17 +37,17 @@ with:
 ### build-jar 액션
 - 이 액션은 Gradle 기반 JAR 빌드를 수행합니다.
 - 위의 예시와 같이 참조하면 되며, 별도의 입력값은 없습니다.
-
+- 
 ### build-and-push-image 액션
+
 이 액션은 Docker Buildx를 사용하여 Docker 이미지를 빌드하고 푸시합니다. 입력값은 아래와 같이 정의되어 있습니다.
 
-| 입력값      | 설명                              | 필수 여부 | 기본값          |
-|-------------|-----------------------------------|-----------|-----------------|
-| dockerfile  | Dockerfile의 경로                 | ❌        | "./Dockerfile"  |
-| tag         | 이미지 태그 (커밋 해시 또는 버전)   | ✔️        | -               |
-| image-name  | 이미지 이름 (형식: owner/image)     | ✔️        | -               |
-| registry    | Docker registry                   | ❌        | "ghcr.io"       |
-| username    | Docker username                   | ❌        | "ddd-cute-bot"  |
-| password    | Docker password                   | ✔️        | -               |
+| 입력값     | 설명                                      | 필수 여부 | 기본값             |
+|------------|-------------------------------------------|-----------|--------------------|
+| dockerfile | Dockerfile의 경로                         | ❌        | "./Dockerfile"     |
+| tags       | 쉼표로 구분된 이미지 태그 목록             | ✔️        | -                  |
+| registry   | Docker 레지스트리                         | ❌        | "ghcr.io"          |
+| username   | Docker 사용자 이름                         | ❌        | "ddd-cute-bot"     |
+| password   | Docker 비밀번호 (토큰 등)                  | ✔️        | -                  |
 
-이 composite action을 사용할 때는 필수 입력값(tag, image-name, password)을 반드시 제공해야 하며, 선택 입력값은 기본값으로도 사용 가능합니다.
+**사용 시 주의사항:** `tags`와 `password`는 필수 입력값이며, 나머지 입력값은 기본값으로 대체될 수 있습니다.
