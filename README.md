@@ -42,16 +42,15 @@ with:
 - Reference it as shown above. (There are no additional inputs for this action.)
 
 ### build-and-push-image Action
-This action builds and pushes a Docker image using Docker Buildx. The inputs are defined as follows:
 
-| Input       | Description                                  | Required | Default         |
-|-------------|----------------------------------------------|----------|-----------------|
-| dockerfile  | Path to the Dockerfile                       | ❌       | "./Dockerfile"  |
-| tag         | Image tag (commit hash or version)           | ✔️       | -               |
-| image-name  | Image name (format: owner/image)             | ✔️       | -               |
-| registry    | Docker registry                              | ❌       | "ghcr.io"       |
-| username    | Docker username                              | ❌       | "ddd-cute-bot"  |
-| password    | Docker password                              | ✔️       | -               |
+This action builds and pushes Docker images using Docker Buildx. The inputs are defined as follows:
 
+| Input       | Description                                     | Required | Default           |
+|-------------|-------------------------------------------------|----------|-------------------|
+| dockerfile  | Path to the Dockerfile                          | ❌       | "./Dockerfile"    |
+| tags        | List of image tags, separated by commas         | ✔️       | -                 |
+| registry    | Docker registry                                 | ❌       | "ghcr.io"         |
+| username    | Docker username                                 | ❌       | "ddd-cute-bot"    |
+| password    | Docker password (e.g., token)                   | ✔️       | -                 |
 
-Make sure to provide values for all required inputs (tag, image-name, and password) when using the composite action. Optional inputs can be omitted if the defaults are acceptable.
+**Note:** `tags` and `password` are required inputs. Other inputs can be omitted and will fall back to their default values.
