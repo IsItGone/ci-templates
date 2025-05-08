@@ -7,7 +7,6 @@ inputs:
   HOST:
     required: true
     description:  ""
-    default: ${{ vars.HOST }}
 
 runs:
   using: "composite"
