@@ -1,20 +1,20 @@
 name: 'Set up and build Flutter App'
 
 inputs:
-  map_api_key_id:
+  map-api-key-id:
     required: true
     description: "Naver map API Client ID"
-  api_host:
+  api-host:
     required: true
     description:  ""
   platform:
     required: true
     description: "Target platform for build: web, appbundle, apk, ios, etc."
-  build_mode:
+  build-mode:
     required: false
     default: release
     description: "Build mode: release(default), profile, or debug"
-  build_options:
+  build-options:
     required: false
     description: "Additional run options"
 
@@ -40,7 +40,7 @@ runs:
       run: |
         flutter build \
           ${{inputs.platform}} \
-          --${{inputs.build_mode}} \
-          --dart-define=NAVER_MAP_CLIENT_ID=${{ inputs.map_api_key_id }} \
-          --dart-define=API_URL=https://${{ inputs.api_host }}/api/graphql \
-          ${{inputs.build_options}}
+          --${{inputs.build-mode}} \
+          --dart-define=NAVER_MAP_CLIENT_ID=${{ inputs.map-api-key-id }} \
+          --dart-define=API_URL=https://${{ inputs.api-host }}/api/graphql \
+          ${{inputs.build-options}}
