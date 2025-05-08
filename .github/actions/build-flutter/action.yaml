@@ -1,0 +1,46 @@
+name: 'Set up and build Flutter App'
+
+inputs:
+  map_api_key_id:
+    required: true
+    description: "Naver map API Client ID"
+  api_host:
+    required: true
+    description:  ""
+  platform:
+    required: true
+    description: "Target platform for build: web, appbundle, apk, ios, etc."
+  build_mode:
+    required: false
+    default: release
+    description: "Build mode: release(default), profile, or debug"
+  build_options:
+    required: false
+    description: "Additional run options"
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: "3.29.2"
+
+    - name: Install dependencies
+      shell: bash
+      run: flutter pub get
+
+    - name: Generate GraphQL Schema & Models
+      shell: bash
+      run: flutter pub run build_runner build --delete-conflicting-outputs
+
+    - name: Build Flutter
+      shell: bash
+      run: |
+        flutter build \
+          ${{inputs.platform}} \
+          --${{inputs.build_mode}} \
+          --dart-define=NAVER_MAP_CLIENT_ID=${{ inputs.map_api_key_id }} \
+          --dart-define=API_URL=https://${{ inputs.api_host }}/api/graphql \
+          ${{inputs.build_options}}
